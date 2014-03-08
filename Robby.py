@@ -40,11 +40,9 @@ class Robby:
 
 	@staticmethod
 	def getRandomRobby():
-		rVal = []
-		
-		# your code goes here ... (TODO #0)
-		# fill the rVal array with random actions of length 3**5
-		
+		rVal, actions = [], list(range(7))
+		for i in range(243):
+			rVal.append(random.choice(actions))
 		return Robby(rVal)
 	
 	@staticmethod
