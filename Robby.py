@@ -5,7 +5,7 @@ from Parameters import *
 def getIndex(current, north, east, south, west):
 	return current + 3 * north + 3**2 * east + 3**3 * south + 3**4 * west
 
-def getRandomMoveAction()
+def getRandomMoveAction():
 	temp = [ACTIONS.MOVE_NORTH, ACTIONS.MOVE_EAST, ACTIONS.MOVE_SOUTH, ACTIONS.MOVE_WEST]
 	return random.choice(temp)
 
