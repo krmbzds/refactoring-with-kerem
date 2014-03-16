@@ -61,24 +61,24 @@ class Robby:
 
         if action == ACTIONS.MOVE_NORTH:
             if north == OBSTACLES.WALL:
-                score = score - 5
+                score -= 5
             else:
-                self.positionR = self.positionR - 1
+                self.positionR -= 1
         elif action == ACTIONS.MOVE_EAST:
             if east == OBSTACLES.WALL:
-                score = score - 5
+                score -= 5
             else:
-                self.positionC = self.positionC + 1
+                self.positionC += 1
         elif action == ACTIONS.MOVE_SOUTH:
             if south == OBSTACLES.WALL:
-                score = score - 5
+                score -= 5
             else:
-                self.positionR = self.positionR + 1
+                self.positionR += 1
         elif action == ACTIONS.MOVE_WEST:
             if west == OBSTACLES.WALL:
-                score = score - 5
+                score -= 5
             else:
-                self.positionC = self.positionC - 1
+                self.positionC -= 1
 
         return score
 
@@ -98,7 +98,7 @@ class Robby:
 
     def move(self):
         score = 0
-        self.moveCount = self.moveCount + 1
+        self.moveCount += 1
 
         action = self.getNextAction()
 
@@ -116,9 +116,9 @@ class Robby:
             pass
         elif action == ACTIONS.PICK_UP_CAN:
             if current == OBSTACLES.EMPTY:
-                score = score - 1
+                score -= 1
             elif current == OBSTACLES.CAN:
-                score = score + 10
+                score += 10
                 self.grid.pickupCan(self.positionR, self.positionC)
 
         return score
