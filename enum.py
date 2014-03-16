@@ -1,7 +1,3 @@
-def enum(**enums):
-    return type('Enum', (), enums)
-
-
 def enum(*sequential, **named):
     enums = dict(zip(sequential, range(len(sequential))), **named)
     reverse = dict((value, key) for key, value in enums.iteritems())
