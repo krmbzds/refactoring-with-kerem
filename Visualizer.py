@@ -23,18 +23,18 @@ class Alien:
         self.root.mainloop()
 
     def create_widgets(self):
-        self.gridIndexes = []
+        self.grid_indexes = []
         w = self.cellW
         for i in range(len(self.grid.matrix)):
             temp = []
             for j in range(len(self.grid.matrix[i])):
                 temp.append(self.canvas.create_rectangle(j*w, i*w, (j+1)*w, (i+1)*w, fill='blue'))
-            self.gridIndexes.append(temp)
+            self.grid_indexes.append(temp)
         rr = self.grid.robby.get_r()
         rc = self.grid.robby.get_c()
         self.robby = self.canvas.create_oval(rc * w, rr * w, (rc + 1) * w, (rr + 1) * w, fill='red')
-        self.txtCounter = self.canvas.create_text(self.cSize / 2 - 40, self.cellW / 2, fill="red")
-        self.txtAction = self.canvas.create_text(self.cSize / 2 + 40, self.cellW / 2, fill="red")
+        self.txt_counter = self.canvas.create_text(self.cSize / 2 - 40, self.cellW / 2, fill="red")
+        self.txt_action = self.canvas.create_text(self.cSize / 2 + 40, self.cellW / 2, fill="red")
 
     def draw_frame(self, rr, rc, action, counter):
         w = self.cellW
@@ -47,10 +47,10 @@ class Alien:
                     color = 'white'
                 elif self.grid.matrix[i][j] == OBSTACLES.CAN:
                     color = 'blue'
-                self.canvas.itemconfig(self.gridIndexes[i][j], fill=color)  # change color
+                self.canvas.itemconfig(self.grid_indexes[i][j], fill=color)  # change color
         self.canvas.coords(self.robby, rc * w, rr * w, (rc + 1) * w, (rr + 1) * w)
-        self.canvas.itemconfig(self.txtAction, text=action)
-        self.canvas.itemconfig(self.txtCounter, text=str(counter))
+        self.canvas.itemconfig(self.txt_action, text=action)
+        self.canvas.itemconfig(self.txt_counter, text=str(counter))
 
     def animate(self):
         if self.running:

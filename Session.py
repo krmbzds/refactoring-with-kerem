@@ -14,8 +14,8 @@ class Session:
         self.robby.set_grid(self.grid)
 
     def run(self):
-        totalScore = 0
+        total_score = 0
         for i in range(NUM_ACTIONS_PER_SESSION):
             score = self.robby.move()
-            totalScore = totalScore + score
-        return totalScore
+            total_score = total_score + score
+        return total_score

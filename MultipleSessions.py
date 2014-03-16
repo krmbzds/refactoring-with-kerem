@@ -20,10 +20,10 @@ class MultipleSessions:
             MultipleSessions.grids.append(grid)
 
     def run(self):
-        totalScore = 0.0
+        total_score = 0.0
         for grid in MultipleSessions.grids:
             session = Session(self.robby, copy.deepcopy(grid))
             score = session.run()
             self.robby.clean()
-            totalScore = totalScore + score
-        return totalScore / len(MultipleSessions.grids)
+            total_score = total_score + score
+        return total_score / len(MultipleSessions.grids)

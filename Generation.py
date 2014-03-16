@@ -25,30 +25,30 @@ class Generation:
         return 0
 
     def get_score(self):
-        rVal = 0.0
+        r_val = 0.0
         for i in range(len(self.robots)):
             m = MultipleSessions(self.robots[i])
-            rVal = rVal + m.run()
-        return rVal / len(self.robots)
+            r_val = r_val + m.run()
+        return r_val / len(self.robots)
 
     def apply_evolution(self):
         tuples = []
-        totalScore = 0.0
+        total_score = 0.0
 
         MultipleSessions.refresh_grids()
         for i in range(len(self.robots)):
             m = MultipleSessions(self.robots[i])
             score = m.run()
-            totalScore = totalScore + score
+            total_score = total_score + score
             tuples.append((self.robots[i], score))
 
         tuples.sort(key=lambda x: x[1], reverse=True)
-        normalizedScore = totalScore / len(self.robots)
-        bestScore = tuples[0][1]
+        normalized_score = total_score / len(self.robots)
+        best_score = tuples[0][1]
 
-        childRobots = []
+        child_robots = []
         # your code goes here ... (TODO #5)
-        # fill the childRobots array with POPULATION_SIZE children
+        # fill the child_robots array with POPULATION_SIZE children
         # using get_roulette_wheel_selection() and Robby.give_birth()
 
-        return Generation(self.id + 1, childRobots), normalizedScore, bestScore
+        return Generation(self.id + 1, child_robots), normalized_score, best_score

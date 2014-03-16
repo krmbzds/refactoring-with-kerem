@@ -20,9 +20,9 @@ def get_random_action():
 class Robby:
     gene = []  # length should be 3^5
     grid = None
-    positionR = 1
-    positionC = 1
-    moveCount = 0
+    position_r = 1
+    position_c = 1
+    move_count = 0
 
     def __init__(self, gene):
         self.gene = gene
@@ -32,29 +32,29 @@ class Robby:
 
     def clean(self):
         self.grid = None
-        self.positionR = 1
-        self.positionC = 1
-        self.moveCount = 0
+        self.position_r = 1
+        self.position_c = 1
+        self.move_count = 0
 
     def get_r(self):
-        return self.positionR
+        return self.position_r
 
     def get_c(self):
-        return self.positionC
+        return self.position_c
 
     @staticmethod
     def get_random_robby():
-        rVal, actions = [], list(range(7))
+        r_val, actions = [], list(range(7))
         for i in range(243):
-            rVal.append(random.choice(actions))
-        return Robby(rVal)
+            r_val.append(random.choice(actions))
+        return Robby(r_val)
 
     @staticmethod
-    def get_robby_from_file(fileName):
-        file = open(fileName, "r")
-        strArr = file.read().split(',')
-        intArr = map(int, strArr)
-        return Robby(intArr)
+    def get_robby_from_file(file_name):
+        file = open(file_name, "r")
+        str_arr = file.read().split(',')
+        int_arr = map(int, str_arr)
+        return Robby(int_arr)
 
     def move_direction(self, current, north, east, south, west, action):
         score = 0
@@ -63,32 +63,32 @@ class Robby:
             if north == OBSTACLES.WALL:
                 score -= 5
             else:
-                self.positionR -= 1
+                self.position_r -= 1
         elif action == ACTIONS.MOVE_EAST:
             if east == OBSTACLES.WALL:
                 score -= 5
             else:
-                self.positionC += 1
+                self.position_c += 1
         elif action == ACTIONS.MOVE_SOUTH:
             if south == OBSTACLES.WALL:
                 score -= 5
             else:
-                self.positionR += 1
+                self.position_r += 1
         elif action == ACTIONS.MOVE_WEST:
             if west == OBSTACLES.WALL:
                 score -= 5
             else:
-                self.positionC -= 1
+                self.position_c -= 1
 
         return score
 
     def get_next_action(self):
 
-        current = self.grid[self.positionR][self.positionC]
-        north = self.grid[self.positionR-1][self.positionC]
-        east = self.grid[self.positionR][self.positionC+1]
-        south = self.grid[self.positionR+1][self.positionC]
-        west = self.grid[self.positionR][self.positionC-1]
+        current = self.grid[self.position_r][self.position_c]
+        north = self.grid[self.position_r-1][self.position_c]
+        east = self.grid[self.position_r][self.position_c+1]
+        south = self.grid[self.position_r+1][self.position_c]
+        west = self.grid[self.position_r][self.position_c-1]
 
         # your code goes here... (TODO #1)
         # return the next action using
@@ -98,15 +98,15 @@ class Robby:
 
     def move(self):
         score = 0
-        self.moveCount += 1
+        self.move_count += 1
 
         action = self.get_next_action()
 
-        current = self.grid[self.positionR][self.positionC]
-        north = self.grid[self.positionR-1][self.positionC]
-        east = self.grid[self.positionR][self.positionC+1]
-        south = self.grid[self.positionR+1][self.positionC]
-        west = self.grid[self.positionR][self.positionC-1]
+        current = self.grid[self.position_r][self.position_c]
+        north = self.grid[self.position_r-1][self.position_c]
+        east = self.grid[self.position_r][self.position_c+1]
+        south = self.grid[self.position_r+1][self.position_c]
+        west = self.grid[self.position_r][self.position_c-1]
 
         if action == ACTIONS.MOVE_NORTH or action == ACTIONS.MOVE_EAST or action == ACTIONS.MOVE_SOUTH or action == ACTIONS.MOVE_WEST:
             score = self.move_direction(current, north, east, south, west, action)
@@ -119,7 +119,7 @@ class Robby:
                 score -= 1
             elif current == OBSTACLES.CAN:
                 score += 10
-                self.grid.pickup_can(self.positionR, self.positionC)
+                self.grid.pickup_can(self.position_r, self.position_c)
 
         return score
 
@@ -131,15 +131,15 @@ class Robby:
 
         gene = mutatedGene
 
-    def give_birth(self, otherRobot):
+    def give_birth(self, other_robot):
         i = random.randint(0, 244)
         r1a, r1b = self.gene[:i], self.gene[i:]
-        r2a, r2b = otherRobot.gene[:i], otherRobot.gene[i:]
+        r2a, r2b = other_robot.gene[:i], other_robot.gene[i:]
         robot1 = r1a + r2b
         robot2 = r2a + r1b
 
         return [robot1, robot2]
 
-    def save(self, fileName):
-        outfile = open(fileName, "w")
+    def save(self, file_name):
+        outfile = open(file_name, "w")
         outfile.write(','.join(str(number) for number in self.gene))
