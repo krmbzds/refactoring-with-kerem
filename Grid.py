@@ -23,10 +23,10 @@ class Grid:
         temp = []
 
         temp.append([OBSTACLES.WALL] * 12)
-        for i in range (0, 10):
+        for i in range(0, 10):
             row = []
             row.append(OBSTACLES.WALL)
-            for j in range (0, 10):
+            for j in range(0, 10):
                 if SODA_CAN_PROBABILITY >= random.random():
                     row.append(OBSTACLES.CAN)
                 else:

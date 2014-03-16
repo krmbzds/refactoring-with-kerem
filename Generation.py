@@ -50,4 +50,4 @@ class Generation:
         # fill the childRobots array with POPULATION_SIZE children
         # using getRouletteWheelSelection() and Robby.giveBirth()
 
-        return ( Generation(self.id + 1, childRobots), normalizedScore, bestScore )
+        return Generation(self.id + 1, childRobots), normalizedScore, bestScore

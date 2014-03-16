@@ -25,4 +25,4 @@ class MultipleSessions:
             score = session.run()
             self.robby.clean()
             totalScore = totalScore + score
-        return ( totalScore / len(MultipleSessions.grids) )
+        return totalScore / len(MultipleSessions.grids)

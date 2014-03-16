@@ -14,7 +14,7 @@ def getRandomAction():
     return random.choice(temp)
 
 class Robby:
-    gene = [] # length should be 3^5
+    gene = []  # length should be 3^5
     grid = None
     positionR = 1
     positionC = 1
@@ -55,23 +55,23 @@ class Robby:
     def moveDirection(self, current, north, east, south, west, action):
         score = 0
 
-        if(action == ACTIONS.MOVE_NORTH):
-            if(north == OBSTACLES.WALL):
+        if action == ACTIONS.MOVE_NORTH:
+            if north == OBSTACLES.WALL:
                 score = score - 5
             else:
                 self.positionR = self.positionR - 1
-        elif(action == ACTIONS.MOVE_EAST):
-            if(east == OBSTACLES.WALL):
+        elif action == ACTIONS.MOVE_EAST:
+            if east == OBSTACLES.WALL:
                 score = score - 5
             else:
                 self.positionC = self.positionC + 1
-        elif(action == ACTIONS.MOVE_SOUTH):
-            if(south == OBSTACLES.WALL):
+        elif action == ACTIONS.MOVE_SOUTH:
+            if south == OBSTACLES.WALL:
                 score = score - 5
             else:
                 self.positionR = self.positionR + 1
-        elif(action == ACTIONS.MOVE_WEST):
-            if(west == OBSTACLES.WALL):
+        elif action == ACTIONS.MOVE_WEST:
+            if west == OBSTACLES.WALL:
                 score = score - 5
             else:
                 self.positionC = self.positionC - 1
@@ -104,16 +104,16 @@ class Robby:
         south = self.grid[self.positionR+1][self.positionC]
         west = self.grid[self.positionR][self.positionC-1]
 
-        if(action == ACTIONS.MOVE_NORTH or action == ACTIONS.MOVE_EAST or action == ACTIONS.MOVE_SOUTH or action == ACTIONS.MOVE_WEST):
+        if action == ACTIONS.MOVE_NORTH or action == ACTIONS.MOVE_EAST or action == ACTIONS.MOVE_SOUTH or action == ACTIONS.MOVE_WEST:
             score = self.moveDirection(current, north, east, south, west, action)
-        elif(action == ACTIONS.MOVE_RANDOM):
+        elif action == ACTIONS.MOVE_RANDOM:
             score = self.moveDirection(current, north, east, south, west, getRandomMoveAction())
-        elif(action == ACTIONS.STAY_PUT):
+        elif action == ACTIONS.STAY_PUT:
             pass
-        elif(action == ACTIONS.PICK_UP_CAN):
-            if(current == OBSTACLES.EMPTY):
+        elif action == ACTIONS.PICK_UP_CAN:
+            if current == OBSTACLES.EMPTY:
                 score = score - 1
-            elif(current == OBSTACLES.CAN):
+            elif current == OBSTACLES.CAN:
                 score = score + 10
                 self.grid.pickupCan(self.positionR, self.positionC)
 

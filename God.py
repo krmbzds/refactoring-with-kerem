@@ -11,6 +11,6 @@ class God:
     def applyEvolution(self):
         for i in range(NUM_GENERATIONS):
             self.generation, normalizedScore, bestScore = self.generation.applyEvolution()
-            print( str(normalizedScore) + ',' + str(bestScore) )
+            print(str(normalizedScore) + ',' + str(bestScore))
             with open('results.txt', 'a') as file:
-                file.write( str(normalizedScore) + ',' + str(bestScore) + '\n')
+                file.write(str(normalizedScore) + ',' + str(bestScore) + '\n')
