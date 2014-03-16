@@ -10,7 +10,7 @@ class Generation:
 
     def __init__(self, id, robots=None):
         self.id = id
-        if robots == None:
+        if robots is None:
             for i in range(POPULATION_SIZE):
                 self.robots.append(Robby.getRandomRobby())
         else:
@@ -40,7 +40,7 @@ class Generation:
             m = MultipleSessions(self.robots[i])
             score = m.run()
             totalScore = totalScore + score
-            tuples.append( (self.robots[i], score) )
+            tuples.append((self.robots[i], score))
 
         tuples.sort(key=lambda x: x[1], reverse=True)
         normalizedScore = totalScore / len(self.robots)
