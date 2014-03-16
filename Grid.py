@@ -21,9 +21,8 @@ class Grid:
 
     @staticmethod
     def getRandomGrid():
-        temp = []
+        temp = [[OBSTACLES.WALL] * 12]
 
-        temp.append([OBSTACLES.WALL] * 12)
         for i in range(0, 10):
             row = []
             row.append(OBSTACLES.WALL)
