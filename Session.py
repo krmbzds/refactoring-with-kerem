@@ -10,8 +10,8 @@ class Session:
     def __init__(self, robby, grid):
         self.robby = robby
         self.grid = grid
-        self.grid.setRobby(self.robby)
-        self.robby.setGrid(self.grid)
+        self.grid.set_robby(self.robby)
+        self.robby.set_grid(self.grid)
 
     def run(self):
         totalScore = 0

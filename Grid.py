@@ -10,17 +10,18 @@ class Grid:
     def __init__(self, matrix):
         self.matrix = matrix
 
-    def setRobby(self, robby):
+    def set_robby(self, robby):
         self.robby = robby
 
     def __getitem__(self, r):
         return self.matrix[r]
 
-    def pickupCan(self, r, c):
+    def pickup_can(self, r, c):
         self.matrix[r][c] = OBSTACLES.EMPTY
 
+    # noinspection PyListCreation
     @staticmethod
-    def getRandomGrid():
+    def get_random_grid():
         temp = [[OBSTACLES.WALL] * 12]
 
         for i in range(0, 10):

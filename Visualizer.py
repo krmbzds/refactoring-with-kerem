@@ -17,12 +17,12 @@ class Alien:
         self.grid = grid
         self.root = tk.Tk()
         self.canvas = tk.Canvas(self.root, width=self.cSize, height=self.cSize)
-        self.createWidgets()
+        self.create_widgets()
         self.canvas.pack()
         self.root.after(0, self.animate)
         self.root.mainloop()
 
-    def createWidgets(self):
+    def create_widgets(self):
         self.gridIndexes = []
         w = self.cellW
         for i in range(len(self.grid.matrix)):
@@ -30,13 +30,13 @@ class Alien:
             for j in range(len(self.grid.matrix[i])):
                 temp.append(self.canvas.create_rectangle(j*w, i*w, (j+1)*w, (i+1)*w, fill='blue'))
             self.gridIndexes.append(temp)
-        rr = self.grid.robby.getR()
-        rc = self.grid.robby.getC()
+        rr = self.grid.robby.get_r()
+        rc = self.grid.robby.get_c()
         self.robby = self.canvas.create_oval(rc * w, rr * w, (rc + 1) * w, (rr + 1) * w, fill='red')
         self.txtCounter = self.canvas.create_text(self.cSize / 2 - 40, self.cellW / 2, fill="red")
         self.txtAction = self.canvas.create_text(self.cSize / 2 + 40, self.cellW / 2, fill="red")
 
-    def drawFrame(self, rr, rc, action, counter):
+    def draw_frame(self, rr, rc, action, counter):
         w = self.cellW
         for i in range(len(self.grid.matrix)):
             for j in range(len(self.grid.matrix[i])):
@@ -54,8 +54,8 @@ class Alien:
 
     def animate(self):
         if self.running:
-            action = ACTIONS.reverse_mapping[self.grid.robby.getNextAction()]
-            self.drawFrame(self.grid.robby.getR(), self.grid.robby.getC(), action, self.grid.robby.moveCount)
+            action = ACTIONS.reverse_mapping[self.grid.robby.get_next_action()]
+            self.draw_frame(self.grid.robby.get_r(), self.grid.robby.get_c(), action, self.grid.robby.moveCount)
             self.root.after(ANIMATION_DELAY, self.animate)
             score = self.grid.robby.move()
 

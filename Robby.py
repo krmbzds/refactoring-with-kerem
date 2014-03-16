@@ -3,16 +3,16 @@ from enum import *
 from Parameters import *
 
 
-def getIndex(current, north, east, south, west):
+def get_index(current, north, east, south, west):
     return current + 3 * north + 3**2 * east + 3**3 * south + 3**4 * west
 
 
-def getRandomMoveAction():
+def get_random_move_action():
     temp = [ACTIONS.MOVE_NORTH, ACTIONS.MOVE_EAST, ACTIONS.MOVE_SOUTH, ACTIONS.MOVE_WEST]
     return random.choice(temp)
 
 
-def getRandomAction():
+def get_random_action():
     temp = [ACTIONS.MOVE_NORTH, ACTIONS.MOVE_EAST, ACTIONS.MOVE_SOUTH, ACTIONS.MOVE_WEST, ACTIONS.MOVE_RANDOM, ACTIONS.STAY_PUT, ACTIONS.PICK_UP_CAN]
     return random.choice(temp)
 
@@ -27,7 +27,7 @@ class Robby:
     def __init__(self, gene):
         self.gene = gene
 
-    def setGrid(self, grid):
+    def set_grid(self, grid):
         self.grid = grid
 
     def clean(self):
@@ -36,27 +36,27 @@ class Robby:
         self.positionC = 1
         self.moveCount = 0
 
-    def getR(self):
+    def get_r(self):
         return self.positionR
 
-    def getC(self):
+    def get_c(self):
         return self.positionC
 
     @staticmethod
-    def getRandomRobby():
+    def get_random_robby():
         rVal, actions = [], list(range(7))
         for i in range(243):
             rVal.append(random.choice(actions))
         return Robby(rVal)
 
     @staticmethod
-    def getRobbyFromFile(fileName):
+    def get_robby_from_file(fileName):
         file = open(fileName, "r")
         strArr = file.read().split(',')
         intArr = map(int, strArr)
         return Robby(intArr)
 
-    def moveDirection(self, current, north, east, south, west, action):
+    def move_direction(self, current, north, east, south, west, action):
         score = 0
 
         if action == ACTIONS.MOVE_NORTH:
@@ -82,7 +82,7 @@ class Robby:
 
         return score
 
-    def getNextAction(self):
+    def get_next_action(self):
 
         current = self.grid[self.positionR][self.positionC]
         north = self.grid[self.positionR-1][self.positionC]
@@ -100,7 +100,7 @@ class Robby:
         score = 0
         self.moveCount += 1
 
-        action = self.getNextAction()
+        action = self.get_next_action()
 
         current = self.grid[self.positionR][self.positionC]
         north = self.grid[self.positionR-1][self.positionC]
@@ -109,9 +109,9 @@ class Robby:
         west = self.grid[self.positionR][self.positionC-1]
 
         if action == ACTIONS.MOVE_NORTH or action == ACTIONS.MOVE_EAST or action == ACTIONS.MOVE_SOUTH or action == ACTIONS.MOVE_WEST:
-            score = self.moveDirection(current, north, east, south, west, action)
+            score = self.move_direction(current, north, east, south, west, action)
         elif action == ACTIONS.MOVE_RANDOM:
-            score = self.moveDirection(current, north, east, south, west, getRandomMoveAction())
+            score = self.move_direction(current, north, east, south, west, get_random_move_action())
         elif action == ACTIONS.STAY_PUT:
             pass
         elif action == ACTIONS.PICK_UP_CAN:
@@ -119,7 +119,7 @@ class Robby:
                 score -= 1
             elif current == OBSTACLES.CAN:
                 score += 10
-                self.grid.pickupCan(self.positionR, self.positionC)
+                self.grid.pickup_can(self.positionR, self.positionC)
 
         return score
 
@@ -131,7 +131,7 @@ class Robby:
 
         gene = mutatedGene
 
-    def giveBirth(self, otherRobot):
+    def give_birth(self, otherRobot):
         i = random.randint(0, 244)
         r1a, r1b = self.gene[:i], self.gene[i:]
         r2a, r2b = otherRobot.gene[:i], otherRobot.gene[i:]

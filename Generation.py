@@ -12,11 +12,11 @@ class Generation:
         self.id = id
         if robots is None:
             for i in range(POPULATION_SIZE):
-                self.robots.append(Robby.getRandomRobby())
+                self.robots.append(Robby.get_random_robby())
         else:
             self.robots = robots
 
-    def getRouletteWheelSelection(self, count):
+    def get_roulette_wheel_selection(self, count):
 
         # your code goes here ... (TODO #4)
         # return a number between [0, count-1]
@@ -24,18 +24,18 @@ class Generation:
 
         return 0
 
-    def getScore(self):
+    def get_score(self):
         rVal = 0.0
         for i in range(len(self.robots)):
             m = MultipleSessions(self.robots[i])
             rVal = rVal + m.run()
         return rVal / len(self.robots)
 
-    def applyEvolution(self):
+    def apply_evolution(self):
         tuples = []
         totalScore = 0.0
 
-        MultipleSessions.refreshGrids()
+        MultipleSessions.refresh_grids()
         for i in range(len(self.robots)):
             m = MultipleSessions(self.robots[i])
             score = m.run()
@@ -49,6 +49,6 @@ class Generation:
         childRobots = []
         # your code goes here ... (TODO #5)
         # fill the childRobots array with POPULATION_SIZE children
-        # using getRouletteWheelSelection() and Robby.giveBirth()
+        # using get_roulette_wheel_selection() and Robby.give_birth()
 
         return Generation(self.id + 1, childRobots), normalizedScore, bestScore

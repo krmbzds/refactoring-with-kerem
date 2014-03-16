@@ -10,13 +10,13 @@ class MultipleSessions:
     def __init__(self, robby):
         self.robby = robby
         if not hasattr(MultipleSessions, 'grids'):
-            self.refreshGrids()
+            self.refresh_grids()
 
     @staticmethod
-    def refreshGrids():
+    def refresh_grids():
         MultipleSessions.grids = []
         for i in range(NUM_SESSIONS):
-            grid = Grid.getRandomGrid()
+            grid = Grid.get_random_grid()
             MultipleSessions.grids.append(grid)
 
     def run(self):
