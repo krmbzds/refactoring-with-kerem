@@ -5,6 +5,7 @@ from enum import *
 import Tkinter as tk
 import time
 
+
 class Alien:
     running = True
     grid = None

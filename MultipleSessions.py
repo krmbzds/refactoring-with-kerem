@@ -3,6 +3,7 @@ from Session import *
 from Grid import *
 import copy
 
+
 class MultipleSessions:
     robby = None
 

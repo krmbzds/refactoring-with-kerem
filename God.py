@@ -2,6 +2,7 @@ import time
 from Generation import *
 from Parameters import *
 
+
 class God:
     generation = None
 

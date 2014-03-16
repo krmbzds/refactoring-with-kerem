@@ -2,6 +2,7 @@ from Parameters import *
 from Robby import *
 from Grid import *
 
+
 class Session:
     robby = None
     grid = None

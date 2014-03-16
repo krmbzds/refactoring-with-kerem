@@ -2,6 +2,7 @@ import random
 from enum import *
 from Parameters import *
 
+
 class Grid:
     matrix = None
     robby = None

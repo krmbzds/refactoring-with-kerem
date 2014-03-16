@@ -4,6 +4,7 @@ from MultipleSessions import *
 from Robby import *
 import random
 
+
 class Generation:
     robots = []
 
