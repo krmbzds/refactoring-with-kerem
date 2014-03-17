@@ -90,11 +90,7 @@ class Robby:
         south = self.grid[self.position_r+1][self.position_c]
         west = self.grid[self.position_r][self.position_c-1]
 
-        # your code goes here... (TODO #1)
-        # return the next action using
-        # current, north, east, south, west and self.gene
-
-        return action
+        return self.gene[self.move_count]
 
     def move(self):
         score = 0
