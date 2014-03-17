@@ -119,13 +119,11 @@ class Robby:
 
         return score
 
-    def mutate(self, gene):
-
-        # your code goes here ... (TODO #3)
-        # mutate the input variable gene
-        # using MUTATION_PROBABILITY
-
-        gene = mutatedGene
+    def mutate(self):
+        for i in range(len(self.gene)):
+            if random.random() < MUTATION_PROBABILITY:
+                self.gene[i] = ACTIONS[random.randint(0, 7)]
+        return self.gene
 
     def give_birth(self, other_robot):
         i = random.randint(0, 244)
