@@ -44,7 +44,7 @@ class Robby:
 
     @staticmethod
     def get_random_robby():
-        r_val, actions = [], list(range(7))
+        r_val, actions = [], range(0, 7)
         for i in range(243):
             r_val.append(random.choice(actions))
         return Robby(r_val)
@@ -90,7 +90,7 @@ class Robby:
         south = self.grid[self.position_r+1][self.position_c]
         west = self.grid[self.position_r][self.position_c-1]
 
-        return self.gene[self.move_count]
+        return self.gene[get_index(current, north, east, south, west)]
 
     def move(self):
         score = 0
@@ -122,17 +122,17 @@ class Robby:
     def mutate(self):
         for i in range(len(self.gene)):
             if random.random() < MUTATION_PROBABILITY:
-                self.gene[i] = ACTIONS[random.randint(0, 7)]
-        return self.gene
+                self.gene[i] = random.choice([0, 1, 2, 3, 4, 5, 6])
 
     def give_birth(self, other_robot):
-        i = random.randint(0, 244)
+        i = random.randint(0, 243)
         r1a, r1b = self.gene[:i], self.gene[i:]
         r2a, r2b = other_robot.gene[:i], other_robot.gene[i:]
-        robot1 = r1a + r2b
-        robot2 = r2a + r1b
-
-        return [robot1, robot2]
+        robot_1 = Robby(r1a + r2b)
+        robot_2 = Robby(r2a + r1b)
+        robot_1.mutate()
+        robot_2.mutate()
+        return robot_1, robot_2
 
     def save(self, file_name):
         outfile = open(file_name, "w")
