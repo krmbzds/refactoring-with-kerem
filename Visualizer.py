@@ -55,11 +55,11 @@ class Alien:
     def animate(self):
         if self.running:
             action = ACTIONS.reverse_mapping[self.grid.robby.get_next_action()]
-            self.draw_frame(self.grid.robby.get_r(), self.grid.robby.get_c(), action, self.grid.robby.moveCount)
+            self.draw_frame(self.grid.robby.get_r(), self.grid.robby.get_c(), action, self.grid.robby.move_count)
             self.root.after(ANIMATION_DELAY, self.animate)
             score = self.grid.robby.move()
 
-            if self.grid.robby.moveCount > NUM_ACTIONS_PER_SESSION:
+            if self.grid.robby.move_count > NUM_ACTIONS_PER_SESSION:
                 self.quit()
 
     def quit(self):
